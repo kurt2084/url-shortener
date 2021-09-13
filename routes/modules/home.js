@@ -44,6 +44,15 @@ router.post('/shortened', (req, res) => {
 
 router.get('/:randomCode', (req, res) => {
   const randomCode = req.params.randomCode
+  URL.find({ randomCode: randomCode })
+    .lean()
+    .then(shortURL => {
+      if (shortURL.length === 0) {
+        res.redirect('/')
+      } else {
+        res.redirect(shortURL[0].inputURL)
+      }
+    })
 })
 
 module.exports = router
