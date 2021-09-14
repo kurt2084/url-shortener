@@ -13,11 +13,11 @@
 ---
 ## How to use
 ### 1. Clone the project to your local host
-git clone https://github.com/kurt2084/url-shortener.git
+<em>git clone https://github.com/kurt2084/url-shortener.git</em>
 ### 2. Change project path
-cd url-shortener
+<em>cd url-shortener</em>
 ### 3. Install npm
-npm install
+<em>npm install</em>
 ### 4. Run app
-npm run start
+<em>npm run start</em>
 ### 5. Open browser and type https://loclahost:3000
