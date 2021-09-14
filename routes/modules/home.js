@@ -1,8 +1,7 @@
 // import express
 const express = require('express')
-const router = require('..')
 // use express router
-const Router = express.Router
+const router = express.Router
 // import url path
 const URL = require('../../models/url')
 // generate random url
