@@ -26,12 +26,9 @@ router.post('/shortened', (req, res) => {
         randomCode = targetUrl[0].randomCode
       } else { //if it's not find, then call generateRandomCode func and give value to randomCode
         randomCode = generateRandomCode()
-        // check if the randomCode exists in db 
-        while(urls.some(eachUrl => eachUrl.randomCode === randomCode)) {
-          randomCode = generateRandomCode()
-        }
-        // return inputURL and randomCode to url db
-        return URL.create({inputURL, randomCode})
+        
+      // return inputURL and randomCode to url db
+      return URL.create({inputURL, randomCode})
       }
     })
     .then(() => { // check both of connections then create different short url format
