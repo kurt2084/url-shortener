@@ -16,21 +16,25 @@ router.post('/shortened', (req, res) => {
   let hosturl = req.headers.host
   let randomCode = ''
 
-  URL.find()
+  URL.find() // find url from db
     .lean()
     .then(urls => {
+      // check url in db is equal to input url then give it to targetUrl
       targetUrl = urls.filter(eachUrl => eachUrl.inputURL === inputURL)
+      // if it finds targetUrl, then get that randomCode
       if (targetUrl.length === 1) {
         randomCode = targetUrl[0].randomCode
-      } else {
+      } else { //if it's not find, then call generateRandomCode func and give value to randomCode
         randomCode = generateRandomCode()
+        // check if the randomCode exists in db 
         while(urls.some(eachUrl => eachUrl.randomCode === randomCode)) {
           randomCode = generateRandomCode()
         }
+        // return inputURL and randomCode to url db
         return URL.create({inputURL, randomCode})
       }
     })
-    .then(() => {
+    .then(() => { // check both of connections then create different short url format
       if(hosturl === 'localhost:3000') {
         shortURL = `http://${hosturl}/${randomCode}`
       } else {
@@ -43,6 +47,7 @@ router.post('/shortened', (req, res) => {
 
 router.get('/:randomCode', (req, res) => {
   const randomCode = req.params.randomCode
+  // use randomCode to find inputURL
   URL.find({ randomCode: randomCode })
     .lean()
     .then(shortURL => {
