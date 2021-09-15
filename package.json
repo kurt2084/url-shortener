@@ -1,5 +1,5 @@
 {
-  "name": "urlshortener",
+  "name": "urlShortener",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -24,6 +24,7 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.3",
     "method-override": "^3.0.0",
-    "mongoose": "^6.0.5"
+    "mongoose": "^6.0.5",
+    "node": "^16.9.1"
   }
 }
