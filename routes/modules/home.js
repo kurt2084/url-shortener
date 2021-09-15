@@ -47,13 +47,15 @@ router.post('/shortened', (req, res) => {
 
 router.get('/:randomCode', (req, res) => {
   const randomCode = req.params.randomCode
-  // use randomCode to find inputURL
+  // use randomCode in db to find inputURL randomCode
   URL.find({ randomCode: randomCode })
     .lean()
     .then(shortURL => {
+      // if didn't find in db then redirect to default page
       if (shortURL.length === 0) {
         res.redirect('/')
       } else {
+        // if find out in db then redirect page
         res.redirect(shortURL[0].inputURL)
       }
     })
